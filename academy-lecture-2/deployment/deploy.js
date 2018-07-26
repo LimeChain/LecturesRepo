@@ -8,6 +8,10 @@ const deploy = async (network, secret) => {
 	const contractWrapper = await deployer.deploy(Billboard);
 	const setPriceTransaction = await contractWrapper.contract.setPrice(50);
 	await contractWrapper.verboseWaitForTransaction(setPriceTransaction, "Initial setPrice");
+	const buyBillboard = await contractWrapper.contract.buy("Propy", {
+		value: 1000
+	});
+	await contractWrapper.verboseWaitForTransaction(buyBillboard, "Buy billboard");
 
 }
 
